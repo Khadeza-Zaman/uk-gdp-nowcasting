@@ -14,7 +14,7 @@
   services_growth p<0.001 - all stationary, confirms growth rates (not 
   levels) are the right basis for modeling
 
-  ## Bridge equation (OLS)
+## Bridge equation (OLS)
 - Regressed quarterly GDP growth on quarterly-averaged production_growth 
   and services_growth
 - Full sample (1997-2026, includes COVID): R-squared=0.752, but Jarque-Bera 
@@ -29,3 +29,17 @@
   GDP in normal conditions
 - services_growth dominates in both specifications, consistent with 
   services being ~80% of UK GDP
+
+## Out-of-sample comparison
+- Test period: 2020 Q2 onward (COVID quarter is the first test observation)
+- Bridge equation (refit on train only, single forecast on test): R² = 0.425
+- Dynamic Factor Model (rolling refit, one-quarter-ahead each time): R² = 0.488
+- DFM modestly outperforms the bridge equation once both are evaluated 
+  properly out-of-sample - a real but modest improvement, not the dramatic 
+  gap suggested by the earlier in-sample comparison (0.53 vs 0.95)
+- Limitation: several of the 24 rolling DFM refits did not fully converge 
+  within 500 EM iterations, adding real uncertainty to individual 
+  quarterly estimates despite the overall pattern holding
+- Earlier in-sample DFM fit produced R²=0.951, which we identified as 
+  substantially inflated - a caution against trusting in-sample fit 
+  statistics for this type of model
